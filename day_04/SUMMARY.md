@@ -1,31 +1,45 @@
-# Day XX
+# Day 04
 
-## Question
+## Question - [Array Concatenation](https://leetcode.com/problems/concatenation-of-array)
 
-What was the question? Breakdown the question into smaller parts and describe properly
+Given a array of integers, You have to create a new array which contain 2 times element of given array.  
+Resulting array must have:
 
-## Intuition
-Describe your first thoughts on how to solve this problem.
-
-## Approach
-Describe your approach to solving the problem.
-
-## Complexity
-- Time complexity:
-Add your time complexity here, e.g. $$O(n)$$ 
-
-- Space complexity:
-Add your space complexity here, e.g. $$O(n)$$
-
-## Code
 ```rust
-my code
+ans[i] == nums[i] and ans[i + n] == nums[i]
 ```
 
-## TIL
+# Intuition
 
-[Today I Learn] What did you learn? What new things you explored/discovered
+My first thought was to use any idiomatic rust method to solve this question in one liner. I find some one liner answer but it will not show what's going inside, so i did it manually.
 
-## Citations
+# Approach
 
-What article, codebase, book, YouTube video etc did you referred?
+- Initialise a resulting empty vector of size = double the given vector & fill all element by 0.
+- Start iterating the given vector and get `element` & `index` of each element.
+- In each iteration, place the `element` at `index` and `index + length of nums`.
+- The resulting vector is ready, so return it at last
+
+# Complexity
+
+- Time complexity: $O(n)$
+
+- Space complexity: $O(n)$
+
+# Code
+
+```
+pub fn get_concatenation(nums: Vec<i32>) -> Vec<i32> {
+    let n = nums.len();
+    let mut ans: Vec<i32> = vec![0; n * 2];
+
+    nums.into_iter()
+    .enumerate()
+    .for_each(|(idx, val)| {
+        ans[idx] = val;
+        ans[idx + n] = val;
+    });
+
+    ans
+}
+```
